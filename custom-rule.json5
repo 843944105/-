@@ -1,34 +1,27 @@
 {
   key: 999999999,
   name: '识别提示点返回',
-  fastQuery: true,
-  matchTime: 1000,
-  actionMaximum: 0,
-  resetMatch: 'none',
+  desc: '自动点击“返回”以关闭“设备风险”、“人气太旺”等提示页', // 添加描述，便于理解
+  quickFind: true, // 使用 quickFind 而非 fastQuery
+  matchTime: 10000, // 延长匹配时间窗口至10秒，确保能捕捉到页面
+  actionMaximum: 3, // 设置为有限次数（如3次），避免在错误页面循环点击
+  resetMatch: 'activity', // 切换页面时重置计数，更合理
   global: true,
   rules: [
     {
-      key: 186732985,
+      key: 0, // 规则键建议从0开始，保持简洁
       matches: [
         '[text*="设备可能存在风险"][visibleToUser=true]',
         '[text*="人气太旺"][visibleToUser=true]',
-        '[text*="访问被拒绝"][visibleToUser=true]'
+        '[text*="访问被拒绝"][visibleToUser=true]',
+        '[text*="当前网络可能存在风险"][visibleToUser=true]' // 可补充其他常见提示
       ],
-      actions: [
-        {
-          action: 'click',
-          key: 94646565,
-          actionTarget: {
-            query: [
-              '[contentDescription*="返回"][visibleToUser=true]'
-            ],
-            matchMode: 'any'
-          }
-        }
-      ],
-      matchMode: 'any',
-      continuousMatch: true,
-      continuousMatchTime: 500
+      // 指定要点击的“返回”按钮目标
+      action: 'clickNode', // 使用标准的点击动作
+      actionTarget: '[desc*="返回"][visibleToUser=true], [text*="返回"][visibleToUser=true]',
+      snapshotUrls: [ // 强烈建议添加快照，方便验证和调试
+        // 例如: 'https://i.gkd.li/i/15000000'
+      ]
     }
   ]
 }
