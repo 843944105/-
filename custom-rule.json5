@@ -8,7 +8,7 @@
   global: true,
   rules: [
     {
-      key: 0,
+      key: 186732985,
       matches: [
         '[text*="设备可能存在风险"][visibleToUser=true]',
         '[text*="人气太旺"][visibleToUser=true]',
@@ -17,7 +17,7 @@
       actions: [
         {
           action: 'click',
-          key: 0,
+          key: 94646565,
           actionTarget: {
             query: [
               '[contentDescription*="返回"][visibleToUser=true]'
