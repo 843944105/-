@@ -7,7 +7,7 @@
   author: '你的名字',             // 作者信息
   // 【核心】更新链接：必须指向你GitHub仓库里这个文件的RAW地址
   updateUrl: 'https://raw.githubusercontent.com/843944105/-/refs/heads/main/custom-rule.json5',
-  supportUri: 'https://github.com/你的用户名/你的仓库名/issues', // 问题反馈页
+  supportUri: 'https://github.com/843944105/-/issues', // 问题反馈页
 
   // ============ 规则分类（可选） ============
   categories: ['功能类', '风险提示'],
