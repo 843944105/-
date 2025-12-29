@@ -1,34 +1,45 @@
 {
-  key: 0,
-  name: '识别提示点返回',
-  fastQuery: true,
-  matchTime: 1000,
-  actionMaximum: 0,
-  resetMatch: 'none',
-  global: true,
-  rules: [
-    {
-      key: 0,
-      matches: [
-        '[text*="设备可能存在风险"][visibleToUser=true]',
-        '[text*="人气太旺"][visibleToUser=true]',
-        '[text*="访问被拒绝"][visibleToUser=true]'
-      ],
-      actions: [
-        {
-          action: 'click',
-          key: 0,
-          actionTarget: {
-            query: [
-              '[contentDescription*="返回"][visibleToUser=true]'
+  "subscription": {
+    "name": "自定义订阅",
+    "author": "你的名字",
+    "version": 1,
+    "updateUrl": "",
+    "rules": [
+      // 这里放你的规则（需转为标准 JSON 格式）
+      {
+        "key": 0,
+        "name": "识别提示点返回",
+        "fastQuery": true,
+        "matchTime": 1000,
+        "actionMaximum": 0,
+        "resetMatch": "none",
+        "global": true,
+        "rules": [
+          {
+            "key": 0,
+            "matches": [
+              "[text*=\"设备可能存在风险\"][visibleToUser=true]",
+              "[text*=\"人气太旺\"][visibleToUser=true]",
+              "[text*=\"访问被拒绝\"][visibleToUser=true]"
             ],
-            matchMode: 'any'
+            "actions": [
+              {
+                "action": "click",
+                "key": 0,
+                "actionTarget": {
+                  "query": [
+                    "[contentDescription*=\"返回\"][visibleToUser=true]"
+                  ],
+                  "matchMode": "any"
+                }
+              }
+            ],
+            "matchMode": "any",
+            "continuousMatch": true,
+            "continuousMatchTime": 500
           }
-        }
-      ],
-      matchMode: 'any',
-      continuousMatch: true,
-      continuousMatchTime: 500
-    }
-  ]
+        ]
+      }
+    ]
+  }
 }
