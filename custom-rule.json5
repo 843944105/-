@@ -1,5 +1,5 @@
 {
-  key: 0,
+  key: 999999999,
   name: '识别提示点返回',
   fastQuery: true,
   matchTime: 1000,
