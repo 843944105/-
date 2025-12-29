@@ -2,8 +2,9 @@
   "id": 10086,
   "name": "我的自动处理规则",
   "version": 2,
-  "author": "你的名字",
-  "updateUrl": "https://github.com/843944105/-/raw/refs/heads/main/custom-rule.json5",
+  "author": "843944105",
+  "updateUrl": "https://raw.githubusercontent.com/843944105/-/refs/heads/main/custom-rule.json5",
+  "checkUpdateUrl": "https://raw.githubusercontent.com/843944105/-/refs/heads/main/custom-rule.json5",
   "supportUri": "https://github.com/843944105/-/issues",
   "categories": ["功能类", "风险提示"],
   "globalGroups": [
@@ -31,5 +32,37 @@
       ]
     }
   ],
-  "apps": []
+  "apps": [
+    {
+      "id": "com.eg.android.AlipayGphone",
+      "name": "支付宝",
+      "groups": [
+        {
+          "key": 0,
+          "name": "访问被拒绝提示-返回",
+          "desc": "支付宝登录页面出现访问被拒绝提示时，自动点击左上角返回按钮",
+          "quickFind": true,
+          "activityIds": "com.eg.android.AlipayGphone.AlipayLogin",
+          "rules": [
+            {
+              "key": 0,
+              "matches": [
+                "[text=\"访问被拒绝\"]",
+                "[text=\"请检查是否使用了代理软件或VPN\"]"
+              ]
+            },
+            {
+              "preKeys": [0],
+              "key": 1,
+              "matches": "[id=\"com.alipay.mobile.antui:id/back_button\"]",
+              "action": "click"
+            }
+          ],
+          "snapshotUrls": [
+            // 这里可以添加您实际截图的URL
+          ]
+        }
+      ]
+    }
+  ]
 }
