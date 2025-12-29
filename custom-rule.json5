@@ -3,7 +3,7 @@
   "name": "测试订阅",
   "version": 1,
   "author": "测试",
-  "updateUrl": "https://raw.githubusercontent.com/你的用户名/你的仓库名/main/gkd.json5",
+  "updateUrl": "https://github.com/843944105/-/raw/refs/heads/main/custom-rule.json5",
   "globalGroups": [],
   "apps": []
 }
