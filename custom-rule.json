@@ -1,33 +1,76 @@
 {
-  "id": "1003",
-  "name": "支付宝弹窗自动关闭（指定文字+返回按钮）",
-  "version": "1.0",
-  "author": "自定义",
-  "categories": ["支付宝", "弹窗关闭"],
-  "apps": [
+  // ==================== 订阅基础信息 (一个文件一份) ====================
+  // 注意：这部分用于定义整个订阅文件，通常一个订阅文件包含多个应用规则
+  // 如果是为单个应用创建规则，你也可以直接从下面的 `apps` 数组开始
+  id: 233, // 【必需】订阅列表ID，用于在GKD订阅列表中唯一标识这个文件
+  name: '我的自定义规则订阅', // 【必需】订阅显示名称
+  version: 2, // 【必需】订阅版本号，更新规则后需增加此值
+  author: '七音', // 作者信息
+  updateUrl: 'https://github.com/843944105/-/edit/main/custom-rule.json', // 【远程订阅必需】订阅文件更新地址
+  checkUpdateUrl: 'https://github.com/843944105/-/edit/main/custom-rule.json', // 【可选】检查版本更新的地址
+  supportUri: '', // 【可选】问题反馈或支持页面
+  categories: ['开屏广告', '功能类'], // 【可选】为整个订阅文件中的规则分类
+
+  // ==================== 应用规则列表 (核心部分) ====================
+  // `apps` 数组包含一个或多个应用规则，每个对象对应一个APP
+  apps: [
     {
-      "id": "com.eg.android.AlipayGphone",
-      "name": "支付宝",
-      "groups": [
+      // ==================== 单个应用规则 ====================
+      id: 'com.example.shopping', // 【必需】应用包名，规则作用的APP
+      name: '示例购物应用', // 【必需】应用名称，用于在GKD界面显示
+      groups: [ // 【必需】规则组数组，一个APP可以有多个规则组
         {
-          "key": 0,
-          "name": "检测指定弹窗+点击desc返回",
-          "fastQuery": true,
-          "matchTime": 30000,
-          "actionMaximum": 0,
-          "resetMatch": "page",
-          "rules": [
+          // ==================== 规则组1：订单确认弹窗 ====================
+          key: 10, // 【必需】规则组唯一标识，同一APP内不可重复
+          name: '功能类-订单确认弹窗', // 【必需】规则组名称
+          desc: '自动关闭下单后出现的确认弹窗，防止遮挡。', // 【可选】规则组描述
+          quickFind: true, // 【可选】是否启用快速查找模式（性能更好）
+          matchTime: 10000, // 【可选】规则生效时间窗口（毫秒），默认10000
+          actionMaximum: 1, // 【可选】该规则组最多触发次数，默认1
+          resetMatch: 'app', // 【可选】何时重置计数，'app'表示切换APP时重置
+          activityIds: [ // 【可选】限定规则只在特定APP页面生效
+            'com.example.shopping.module.order.OrderConfirmActivity',
+            'com.example.shopping.module.pay.PaymentActivity'
+          ],
+          rules: [ // 【必需】具体规则数组，一个规则组可包含多条匹配规则
             {
-              "key": 0,
-              "matches": "[text=\"访问被拒绝\"][visibleToUser=true] || [text=\"人气太旺\"][visibleToUser=true] || [text=\"设备可能存在风险\"][visibleToUser=true]",
-              "associatedMatches": "[desc=\"返回\"][clickable=true][visibleToUser=true]",
-              "associatedAction": "CLICK",
-              "delay": 500,
-              "viewIds": "com.alipay.android.phone.thirdparty:id/title"
+              key: 0, // 【必需】规则唯一标识，同一规则组内不可重复
+              // 【核心】匹配UI元素的表达式数组，满足其一即触发
+              matches: [
+                '// 方案1：通过ID匹配弹窗容器和关闭按钮',
+                '[id="com.example.shopping:id/order_success_dialog"]',
+                '[id="com.example.shopping:id/btn_close"][clickable=true]',
+                '// 方案2：通过文本匹配',
+                '[text="订单确认"][visibleToUser=true]',
+                '[text="立即支付"][visibleToUser=true]',
+                '// 方案3：通过组件描述匹配（无障碍功能）',
+                '[desc="关闭按钮"][clickable=true]'
+              ],
+              // 【可选】排除匹配的表达式，避免误触
+              excludeMatches: '[text*="评价"]', // 例如，排除包含“评价”字样的弹窗
+              // 【可选】预设快照链接，用于在GKD界面预览和验证
+              snapshotUrls: [
+                'https://i.gkd.li/i/24366326' // 你提供的快照
+              ]
+            }
+          ]
+        },
+        {
+          // ==================== 规则组2：开屏广告 ====================
+          key: 1,
+          name: '开屏广告',
+          quickFind: true,
+          rules: [
+            {
+              key: 0,
+              matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+              snapshotUrls: ['https://i.gkd.li/i/13070251']
             }
           ]
         }
+        // ... 可以继续添加更多规则组
       ]
     }
+    // ... 可以继续添加针对其他APP的规则
   ]
 }
