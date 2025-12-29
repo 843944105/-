@@ -1,1 +1,30 @@
-{"id":1767033328744,"name":"支付宝访问被拒绝提示","desc":"自动关闭支付宝的代理/VPN检测提示 (优化版)","appId":"com.eg.android.AlipayGphone","activityIds":["com.eg.android.AlipayGphone.AlipayLogin"],"rules":[{"key":0,"desc":"点击返回按钮关闭访问被拒绝提示","matches":["[id='com.alipay.mobile.antui:id/title_text'][text='提示']","[id='com.alipay.android.phone.thirdparty:id/title'][text='访问被拒绝']"],"action":"click","actionNodes":[{"matches":"[id='com.alipay.mobile.antui:id/back_button']","position":"center"}],"snapshot":true,"actionMaximum":1,"matchDelay":800}],"version":2}
+{
+ "id": 1767033328744,
+ "name": "支付宝访问被拒绝提示",
+ "desc": "自动关闭支付宝的代理/VPN检测提示 (优化版)",
+ "appId": "com.eg.android.AlipayGphone",
+ "activityIds": [
+  "com.eg.android.AlipayGphone.AlipayLogin"
+ ],
+ "rules": [
+  {
+   "key": 0,
+   "desc": "返回",
+   "matches": [
+    "[id='com.alipay.mobile.antui:id/title_text'][text='提示']",
+    "[id='com.alipay.android.phone.thirdparty:id/title'][text='访问被拒绝']"
+   ],
+   "action": "click",
+   "actionNodes": [
+    {
+     "matches": "[id='com.alipay.mobile.antui:id/back_button']",
+     "position": "center"
+    }
+   ],
+   "snapshot": true,
+   "actionMaximum": 1,
+   "matchDelay": 800
+  }
+ ],
+ "version": 2
+}
