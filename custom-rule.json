@@ -1,33 +1,29 @@
 {
-  id: 1003,
-  name: '支付宝弹窗自动关闭（指定文字+返回按钮）',
-  version: 1.0,
-  author: '自定义',
-  categories: ['支付宝', '弹窗关闭'],
-  apps: [
+  "id": "1003",
+  "name": "支付宝弹窗自动关闭（指定文字+返回按钮）",
+  "version": "1.0",
+  "author": "自定义",
+  "categories": ["支付宝", "弹窗关闭"],
+  "apps": [
     {
-      id: 'com.eg.android.AlipayGphone', // 支付宝官方包名（稳定有效）
-      name: '支付宝',
-      groups: [
+      "id": "com.eg.android.AlipayGphone",
+      "name": "支付宝",
+      "groups": [
         {
-          key: 0,
-          name: '检测指定弹窗+点击desc返回',
-          fastQuery: true,
-          matchTime: 30000, // 单次检测30秒，循环生效
-          actionMaximum: 0, // 无限次触发（一直检测）
-          resetMatch: 'page', // 页面切换后重置匹配状态
-          rules: [
+          "key": 0,
+          "name": "检测指定弹窗+点击desc返回",
+          "fastQuery": true,
+          "matchTime": 30000,
+          "actionMaximum": 0,
+          "resetMatch": "page",
+          "rules": [
             {
-              key: 0,
-              // 精准匹配指定弹窗文字（3个场景全覆盖）
-              matches: '[text="访问被拒绝"][visibleToUser=true] || [text="人气太旺"][visibleToUser=true] || [text="设备可能存在风险"][visibleToUser=true]',
-              // 关联匹配desc为「返回」的按钮（你的核心需求）
-              associatedMatches: '[desc="返回"][clickable=true][visibleToUser=true]',
-              associatedAction: 'CLICK', // 执行点击操作
-              delay: 500, // 延迟500毫秒，避免控件未加载完成
-              // 可选：指定弹窗标题控件ID（你提供的id），提升匹配精准度
-              activityIds: '*', // 对所有支付宝页面生效
-              viewIds: 'com.alipay.android.phone.thirdparty:id/title' // 匹配你提供的标题控件ID
+              "key": 0,
+              "matches": "[text=\"访问被拒绝\"][visibleToUser=true] || [text=\"人气太旺\"][visibleToUser=true] || [text=\"设备可能存在风险\"][visibleToUser=true]",
+              "associatedMatches": "[desc=\"返回\"][clickable=true][visibleToUser=true]",
+              "associatedAction": "CLICK",
+              "delay": 500,
+              "viewIds": "com.alipay.android.phone.thirdparty:id/title"
             }
           ]
         }
